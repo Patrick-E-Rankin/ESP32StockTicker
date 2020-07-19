@@ -65,6 +65,7 @@
     <p>It also supports crypto, but you must use the Yahoo Finance format, for
       example BTC-USD for Bitcoin.</p>
     <p>Any symbol that works on Yahoo Finance should technically work.</p>
+  <p>I could never get the JSON parsing examples working so I parse manually.</p>
     <p><br>
     </p>
   </body>
