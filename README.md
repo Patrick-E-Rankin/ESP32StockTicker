@@ -23,34 +23,36 @@
       by <a href="https://github.com/me-no-dev" target="_blank">Me No Dev</a></p>
     <h3><u>Setup</u></h3>
     <p>My personal ESP32 setup is as follows:</p>
-    <table style="width: 289px; height: 160px;" border="1">
-      <tbody>
-        <tr>
-          <td><u>ESP32 Pins</u></td>
-          <td><u>LED Matrix</u></td>
-        </tr>
-        <tr>
-          <td>3.3V</td>
-          <td>VCC</td>
-        </tr>
-        <tr>
-          <td>GND</td>
-          <td>GND</td>
-        </tr>
-        <tr>
-          <td>23</td>
-          <td>DIN</td>
-        </tr>
-        <tr>
-          <td>15</td>
-          <td>CS</td>
-        </tr>
-        <tr>
-          <td>18</td>
-          <td>CLK</td>
-        </tr>
-      </tbody>
-    </table>
+   <table>
+<thead>
+  <tr>
+    <th>ESP32 Pins</th>
+    <th>LED Matrix</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td>3.3V</td>
+    <td>VCC</td>
+  </tr>
+  <tr>
+    <td>GND</td>
+    <td>GND</td>
+  </tr>
+  <tr>
+    <td>23</td>
+    <td>DIN</td>
+  </tr>
+  <tr>
+    <td>15</td>
+    <td>CS</td>
+  </tr>
+  <tr>
+    <td>18</td>
+    <td>CLK</td>
+  </tr>
+</tbody>
+</table>
     <p>You must insert your own SSID and password for your Wifi, so it can
       connect. </p>
     <p>Upon getting an IP address it will display it continually on the LED
