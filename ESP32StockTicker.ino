@@ -1,3 +1,5 @@
+//This code came from https://github.com/Patrick-E-Rankin/ESP32StockTicker
+//Your free to do what you want with it, if you have any useful changes/code clean up, then please let me know.
 #include <Arduino.h>  //only neccesary for PlatformIO
 #include <WiFi.h>
 #include <HTTPClient.h>
