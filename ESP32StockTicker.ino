@@ -147,10 +147,7 @@ void LEDDisplay(void * parameter){
 }
 
 void setup() {
-  // put your setup code here, to run once:
   Serial.begin(115200);
-//  index_html = beforeIndex + ticker1 + afterIndex;
-  //index_html,beforeIndex);
   WiFi.begin(ssid, password);
   while (WiFi.status() != WL_CONNECTED) {
     Serial.println(".");
@@ -167,7 +164,6 @@ void setup() {
   xTaskCreatePinnedToCore(LEDDisplay,"LedDisplay",1000,NULL,1,&Task1,0);
   delay(1000);
   server.on("/", HTTP_GET, [](AsyncWebServerRequest *request){
-    //request->send_P(200, "text/html", index_html);
     request->send(200, "text/html", beforeIndex+ticker1+afterIndex);
   });
   server.on("/get", HTTP_GET, [] (AsyncWebServerRequest *request) {
@@ -190,9 +186,7 @@ void setup() {
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
-
-  if((WiFi.status()== WL_CONNECTED) && (ticker1 != "none")){
+    if((WiFi.status()== WL_CONNECTED) && (ticker1 != "none")){
       HTTPClient http;
       String serverPath = serverName + ticker1 + token;
       http.begin(serverPath.c_str());
@@ -204,7 +198,6 @@ void loop() {
         String payload = http.getString();
         int tmp = payload.indexOf(priceString);
         int tmp2 = payload.indexOf(endPrice,(tmp+20));
-        //Serial.println(payload.substring((tmp+20), tmp2));
         char text[30] = "";
         strcat(text,ticker1.c_str());
         strcat(text," ");
