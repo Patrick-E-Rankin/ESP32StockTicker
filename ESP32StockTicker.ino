@@ -11,7 +11,7 @@ AsyncWebServer server(80);
 const char* ssid     = "YOUR SSID";
 const char* password = "PASS PHRASE";
 String serverName = "https://query1.finance.yahoo.com/v8/finance/chart/";
-String token = "?region=US&lang=en-US&includePrePost=false&interval=1d&range=1d";
+String token = "?interval=1d";
 const uint8_t LEDMATRIX_CS_PIN = 15;
 const int LEDMATRIX_SEGMENTS = 4;
 const int LEDMATRIX_WIDTH    = LEDMATRIX_SEGMENTS * 8;
