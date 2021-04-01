@@ -59,13 +59,11 @@
       Matrix until it receives its first ticker symbol.</p>
     <p>From any browser input the IP address where you will be presented with a
       ticker input. </p>
-    <p>Input the ticker symbol, the program automatically changes it to
-      uppercase, so it's okay to be lazy here.</p>
     <p>The program will automatically check for a new price every 5 seconds.</p>
     <p>It also supports crypto, but you must use the Yahoo Finance format, for
       example BTC-USD for Bitcoin.</p>
     <p>Any symbol that works on Yahoo Finance should technically work.</p>
-  <p>I could never get the JSON parsing examples working so I parse manually.</p>
+  <p>I got JSON working finally, so it now works a little better.</p>
     <p><br>
     </p>
   </body>
