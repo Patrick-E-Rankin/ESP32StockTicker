@@ -22,6 +22,7 @@
         Bielawski</a><br>
       <a href="https://github.com/me-no-dev/ESPAsyncWebServer" target="_blank">ESPAsyncWebServer</a>
       by <a href="https://github.com/me-no-dev" target="_blank">Me No Dev</a></p>
+  <p><a href="https://github.com/bblanchon/ArduinoJson">ArduinoJson</a></p>
     <h3><u>Setup</u></h3>
     <p>My personal ESP32 setup is as follows:</p>
    <table>
