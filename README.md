@@ -11,7 +11,7 @@
     <p>I am currently using Yahoo Finance for price info every 5 seconds but you
       can change that to the API of your choice along with the update frequency.</p>
     <p>This code utilizes both cores, without doing so causes a pause when
-      prices get updated. Technically should work on ESP8266 with changes.</p>
+      prices get updated.<br> Technically should work on ESP8266 with changes.</p>
   <p>The ESP8266 needs the RSA fingerprint method: http.begin(server,"74:79:EA:92:97:56:A5:C7:94:9B:2C:DD:97:B4:64:15:4F:23:F7:FF");</p>
     <p>I am not a developer or programmer, so my code is not pretty, but it
       works and I work on it all the time. </p>
