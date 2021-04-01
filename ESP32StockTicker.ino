@@ -1,15 +1,16 @@
 //This code came from https://github.com/Patrick-E-Rankin/ESP32StockTicker
-//You're free to do what you want with it, if you have any useful changes/code clean up, then please let me know.
-#include <Arduino.h>  //only neccesary for PlatformIO
+//Your free to do what you want with it, if you have any useful changes/code clean up, then please let me know.
+
 #include <WiFi.h>
 #include <HTTPClient.h>
+#include <ArduinoJson.h>
 #include <LEDMatrixDriver.hpp>
 #include <ESPAsyncWebServer.h>
 
 AsyncWebServer server(80);
 
-const char* ssid     = "YOUR SSID";
-const char* password = "PASS PHRASE";
+const char* ssid = "YOUR WIFI SSID";
+const char* password = "YOUR WIFI PASSWORD";
 String serverName = "https://query1.finance.yahoo.com/v8/finance/chart/";
 String token = "?interval=1d";
 const uint8_t LEDMATRIX_CS_PIN = 15;
@@ -22,8 +23,7 @@ char displayString[30] = "";
 char priceString[] = "regularMarketPrice\":";
 char endPrice[] = ",\"";
 const char* PARAM_INPUT_1 = "input1";
-const char beforeIndex[] = "<!DOCTYPE HTML><html><head><title>ESP Input Form</title><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"></head><body><form action=\"/get\">Ticker Symbol: <input type=\"text\" name=\"input1\"><input type=\"submit\" value=\"Submit\"></form><br>Current ticker:";
-const char afterIndex[] = "</body></html>";
+const char Index[] = "<!DOCTYPE HTML><html><head><title>ESP32 Stock Ticker</title><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"></head><body><form action=\"/get\">Ticker Symbol: <input type=\"text\" name=\"input1\"><input type=\"submit\" value=\"Submit\"></form><br><a href=\"https://github.com/Patrick-E-Rankin/ESP32StockTicker\">ESP32StockTicker</a></body></html>";
 
 void notFound(AsyncWebServerRequest *request) {
   request->send(404, "text/plain", "Not found");
@@ -146,10 +146,12 @@ void LEDDisplay(void * parameter){
             }
 }
 
-void setup() {
+void setup() 
+{
   Serial.begin(115200);
   WiFi.begin(ssid, password);
-  while (WiFi.status() != WL_CONNECTED) {
+  while (WiFi.status() != WL_CONNECTED) 
+  {
     Serial.println(".");
     delay(500);
   }
@@ -163,56 +165,71 @@ void setup() {
   memcpy(displayString,text,30); 
   xTaskCreatePinnedToCore(LEDDisplay,"LedDisplay",1000,NULL,1,&Task1,0);
   delay(1000);
-  server.on("/", HTTP_GET, [](AsyncWebServerRequest *request){
-    request->send(200, "text/html", beforeIndex+ticker1+afterIndex);
-  });
-  server.on("/get", HTTP_GET, [] (AsyncWebServerRequest *request) {
+  server.on("/", HTTP_GET, [](AsyncWebServerRequest *request){request->send(200, "text/html", Index);});
+  server.on("/get", HTTP_GET, [] (AsyncWebServerRequest *request) 
+  {
     String inputMessage;
     String inputParam;
     // GET input1 value on <ESP_IP>/get?input1=<inputMessage>
-    if (request->hasParam(PARAM_INPUT_1)) {
+    if (request->hasParam(PARAM_INPUT_1)) 
+    {
       inputMessage = request->getParam(PARAM_INPUT_1)->value();
       inputParam = PARAM_INPUT_1;
       ticker1 = inputMessage;
-      ticker1.toUpperCase();}
-  //  else {
-  //    inputMessage = "No message sent";
-    //  inputParam = "none";
-    //}
-    request->redirect("/");
-    });
+    }
+      request->redirect("/");
+   });
     server.onNotFound(notFound);
     server.begin();
 }
 
 void loop() {
-    if((WiFi.status()== WL_CONNECTED) && (ticker1 != "none")){
+    if((WiFi.status()== WL_CONNECTED) && (ticker1 != "none"))
+    {
       HTTPClient http;
-      String serverPath = serverName + ticker1 + token;
-      http.begin(serverPath.c_str());
+      http.begin(serverName+ticker1+token);
       int httpResponseCode = http.GET();
+      
 
-      if (httpResponseCode > 0) {
+      if (httpResponseCode > 0) 
+      {
         Serial.print("HTTP Response Code: ");
         Serial.println(httpResponseCode);
         String payload = http.getString();
-        int tmp = payload.indexOf(priceString);
-        int tmp2 = payload.indexOf(endPrice,(tmp+20));
+
+        DynamicJsonDocument doc(2048);
+        DeserializationError error = deserializeJson(doc, payload);
+        if (error) 
+        {
+          Serial.print(F("deserializeJson() failed: "));
+          Serial.println(error.f_str());
+          return;
+        }
+        JsonObject chart_result_0 = doc["chart"]["result"][0];
+        JsonObject chart_result_0_meta = chart_result_0["meta"];
+        const char* tempsymbol = chart_result_0_meta["symbol"];
+        float tempmarketprice = chart_result_0_meta["regularMarketPrice"]; 
+        Serial.println(tempsymbol);
+        Serial.println(tempmarketprice);
+        char pricebuffer[sizeof(tempmarketprice)+1];
+        dtostrf(tempmarketprice, sizeof(tempmarketprice), 2, pricebuffer);
+        Serial.print("Pricebuffer: ");
+        Serial.println(pricebuffer);
         char text[30] = "";
-        strcat(text,ticker1.c_str());
+        strcat(text,tempsymbol);
         strcat(text," ");
-        strcat(text, payload.substring((tmp+20), tmp2).c_str());
-        strcat(text," ");
+        strcat(text,pricebuffer);
+        strcat(text," ");     
         memcpy(displayString,text,30);
         Serial.println(displayString);
       }
-      else {
+      else 
+      {
         Serial.print("Error Code: ");
         Serial.println(httpResponseCode);
       }
       http.end();
-      delay(5000);}
-  
-  
+      delay(5000);
+    }
+      
 }
-
