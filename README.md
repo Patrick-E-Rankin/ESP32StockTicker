@@ -4,6 +4,7 @@
 
   <body>
     <h1>ESP32StockTicker</h1>
+    <img src="sample.gif"></img>
     <h3><u>Summary</u></h3>
     <p>ESP32 based stock ticker that uses a MAX7219 LED Matrix (mine is 4
       segments but how many is up to you), that receives the ticker symbol from
