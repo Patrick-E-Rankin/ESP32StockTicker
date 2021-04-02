@@ -211,8 +211,6 @@ void loop() {
         Serial.println(tempmarketprice);
         char pricebuffer[sizeof(tempmarketprice)+1];
         dtostrf(tempmarketprice, sizeof(tempmarketprice), 2, pricebuffer);
-        Serial.print("Pricebuffer: ");
-        Serial.println(pricebuffer);
         char text[30] = "";
         strcat(text,tempsymbol);
         strcat(text," ");
