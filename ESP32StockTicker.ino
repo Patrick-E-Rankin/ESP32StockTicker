@@ -20,7 +20,6 @@ LEDMatrixDriver lmd(LEDMATRIX_SEGMENTS, LEDMATRIX_CS_PIN);
 const int ANIM_DELAY = 75; //75 is slow enough
 String ticker1 = "none";
 char displayString[30] = "";
-char priceString[] = "regularMarketPrice\":";
 char endPrice[] = ",\"";
 const char* PARAM_INPUT_1 = "input1";
 const char Index[] = "<!DOCTYPE HTML><html><head><title>ESP32 Stock Ticker</title><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"></head><body><form action=\"/get\">Ticker Symbol: <input type=\"text\" name=\"input1\"><input type=\"submit\" value=\"Submit\"></form><br><a href=\"https://github.com/Patrick-E-Rankin/ESP32StockTicker\">ESP32StockTicker</a></body></html>";
