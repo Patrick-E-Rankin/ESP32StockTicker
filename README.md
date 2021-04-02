@@ -75,7 +75,7 @@
   Core 1 has a fit and panics, causing the ESP32 to restart.</p>
   
   <h3><u>TODO</u></h3>
-  1.) Better Error Handling<br>
-  2.) Multiple Ticker Support
+  1) Better Error Handling<br>
+  2) Multiple Ticker Support
   </body>
 </html>
