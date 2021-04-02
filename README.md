@@ -73,8 +73,8 @@
   <h3><u>FAQ</u></h3>
   <p><b>What happens when I put a bad ticker? Like "None"?</b><br>
   Core 1 has a fit and panics, causing the ESP32 to restart.</p>
-  <br>
-  <h3><u>TODO</u></h3><br>
+  
+  <h3><u>TODO</u></h3>
   1.) Better Error Handling<br>
   2.) Multiple Ticker Support
   </body>
