@@ -70,5 +70,8 @@
     <p><br>
   <p>Updated 4/1/2021 - Finally got ArduinoJSON working and tried to make the code more readable.</p><br>
     </p>
+  <h3><u>FAQ</u></h3>
+  <p><b>What happens when I put a bad ticker? Like "None"?</b><br>
+  Core 1 has a fit and panics, causing the ESP32 to restart.</p>
   </body>
 </html>
