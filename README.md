@@ -68,7 +68,7 @@
     <p>Any symbol that works on Yahoo Finance should technically work.</p>
   <p>I got JSON working finally, so it now works a little better.</p>
     <p><br>
-  <p>Updated 4/1/2021 - Finally got ArduinoJSON working and tried to make the code more readable.</p><br>
+<p><b>Updated 4/1/2021</b> - Finally got ArduinoJSON working and tried to make the code more readable.</p><br>
     </p>
   <h3><u>FAQ</u></h3>
   <p><b>What happens when I put a bad ticker? Like "None"?</b><br>
